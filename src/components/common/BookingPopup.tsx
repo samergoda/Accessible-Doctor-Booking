@@ -1,4 +1,5 @@
 import { Calendar, Clock } from "lucide-react";
+import { toast } from "react-toastify";
 
 interface BookingPopupProps {
   selectedDoctor: {
@@ -29,7 +30,7 @@ interface BookingPopupProps {
   formatDate: (dateString: string) => string;
   handleDateSelect: (date: string) => void;
   handleTimeSelect: (slotId: string, time: string) => void;
-  handleBookAppointment: () => void;
+  addAppointment: (appointment: { doctorId: string; date: string; time: string }) => void;
   closeBookingModal: () => void;
 }
 
@@ -43,9 +44,23 @@ export default function BookingPopup({
   formatDate,
   handleDateSelect,
   handleTimeSelect,
-  handleBookAppointment,
+  addAppointment,
   closeBookingModal,
 }: BookingPopupProps) {
+  const handleBookAppointment = () => {
+    if (!selectedDoctor || !selectedDate || !selectedTime) return;
+
+    addAppointment({
+      doctorId: selectedDoctor.id,
+      date: selectedDate,
+      time: selectedTime,
+    });
+    toast("Appointment Confirmed", {
+      ariaLabel: "Appointment Confirmed",
+      position: "top-center",
+      type: "success",
+    });
+  };
   return (
     <div className="p-6">
       <h2 id="booking-modal-title" className="text-xl font-semibold text-gray-900 mb-4">

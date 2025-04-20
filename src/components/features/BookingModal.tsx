@@ -41,16 +41,6 @@ const BookingModal: React.FC = () => {
     setSelectedSlotId(slotId);
   };
 
-  const handleBookAppointment = () => {
-    if (!selectedDoctor || !selectedDate || !selectedTime) return;
-
-    addAppointment({
-      doctorId: selectedDoctor.id,
-      date: selectedDate,
-      time: selectedTime,
-    });
-  };
-
   const availableDates = Object.keys(timeSlotsByDate).sort();
 
   return (
@@ -80,7 +70,7 @@ const BookingModal: React.FC = () => {
             formatDate={formatDate}
             handleDateSelect={handleDateSelect}
             handleTimeSelect={handleTimeSelect}
-            handleBookAppointment={handleBookAppointment}
+            addAppointment={addAppointment}
             closeBookingModal={closeBookingModal}
           />
         </div>

@@ -5,6 +5,7 @@ import BookingModal from "./components/features/BookingModal";
 import DoctorDirectory from "./lib/views/DoctorDirectory";
 import AppointmentsView from "./lib/views/AppointmentsView";
 import Header from "./components/layout/Header";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const [activeTab, setActiveTab] = useState<"doctors" | "appointments">("doctors");
@@ -14,6 +15,7 @@ function App() {
       <div className="min-h-screen bg-gray-50">
         {/* Header */}
         <Header />
+        <ToastContainer />
 
         {/* Main Content */}
         <main>
